@@ -13,6 +13,7 @@ public class OneHouseKeeper {
     public Sprite sprite;
     public bool got;
     public HouseKeeperSkill skill;
+    public Sprite Hint;
 }
 
 public enum HouseKeeperSkillType {
