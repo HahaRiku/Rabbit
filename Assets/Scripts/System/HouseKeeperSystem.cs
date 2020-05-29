@@ -14,8 +14,8 @@ public static class HouseKeeperSystem {
     }
 
     public static bool GetGotByName(string name) {
-        foreach(OneHouseKeeper ohk in data.houseKeeperList) {
-            if(name == ohk.name) {
+        foreach (OneHouseKeeper ohk in data.houseKeeperList) {
+            if (name == ohk.name) {
                 return ohk.got;
             }
         }
@@ -26,7 +26,7 @@ public static class HouseKeeperSystem {
     public static int GetGotNumber() {
         int count = 0;
         foreach (OneHouseKeeper hk in data.houseKeeperList) {
-            if(hk.got) {
+            if (hk.got) {
                 count++;
             }
         }
@@ -39,5 +39,9 @@ public static class HouseKeeperSystem {
 
     public static HouseKeeperSkill GetSkillByIndex(int index) {
         return data.houseKeeperList[index].skill;
+    }
+
+    public static Sprite GetHintByIndex(int index) {
+        return data.houseKeeperList[index].Hint;
     }
 }
