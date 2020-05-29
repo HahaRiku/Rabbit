@@ -11,10 +11,10 @@ public class SpriteEvent : MonoBehaviour
     private bool isBeingHeld;
     private bool isClick = true;
     private bool startdrag = false;
-    //private Rigidbody2D r;
     private bool dropping;
-    float curT;
+    private float curT;
 
+    //Random random = new Random();
     private Animator ani;
     // Start is called before the first frame update
     void Start()
@@ -70,6 +70,7 @@ public class SpriteEvent : MonoBehaviour
         startdrag = false;
         if (isClick == true) {
             ani.SetTrigger("Click");
+            Debug.Log("Click");
         }
         else {
             ani.GetComponent<Animator>().enabled = true;
@@ -79,7 +80,7 @@ public class SpriteEvent : MonoBehaviour
             if(transform.parent.localPosition.y > 0.349) {
                 //r.gravityScale = 1;
                 dropping = true;
-                transform.parent.DOMoveY(-0.111f, 1).SetEase(Ease.InCubic);
+                transform.parent.DOMoveY(-0.111f, 0.78f).SetEase(Ease.InCubic);
             }
             //r.useGravity = false;
         }
