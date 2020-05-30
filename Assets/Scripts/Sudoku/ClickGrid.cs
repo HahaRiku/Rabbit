@@ -8,7 +8,7 @@ public class ClickGrid : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         GM = FindObjectOfType<SudokuGM>();
-        Kuang = transform.GetChild(0).gameObject;
+        Kuang = transform.parent.GetChild(0).gameObject;
         Kuang.SetActive(false);
     }
 

@@ -23,7 +23,7 @@ public static class SystemVariables {
 public static class Init {
     [RuntimeInitializeOnLoadMethod]
     static void OnRuntimeMethodLoad() {
-        SystemVariables.CarrotCount = 0;
+        SystemVariables.CarrotCount = 99999999;
         SystemVariables.waiguanValue = 1;
         SystemVariables.koganValue = 1;
         SystemVariables.xianchiValue = 1;

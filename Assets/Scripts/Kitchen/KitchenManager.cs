@@ -5,9 +5,21 @@ using TouchEvent_handler;
 using UnityEngine.UI;
 
 public class KitchenManager : MonoBehaviour {
+    [System.Serializable]
+    public struct LevelSprite {
+        public Sprite NotPress;
+        public Sprite Pressed;
+    }
+
+    public LevelSprite[] 外觀Sprites;  //index=0~4 represents 1~5 level
+    public LevelSprite[] 口感Sprites;
+    public LevelSprite[] 香氣Sprites;
+    public LevelSprite[] 經典Sprites;
+    public Sprite[] 成功率Sprites; //index = 0~4 represents 25% 50% 100%
     public GameObject 食譜Prefab;
     public Sprite QuestionMark;
     public Sprite 焦;
+    public Sprite 凍;
 
     private enum Type {
         外觀,
@@ -25,7 +37,7 @@ public class KitchenManager : MonoBehaviour {
         public GameObject instance;
     }
 
-    private Text 外觀lv, 口感lv, 香氣lv, 經典lv;
+    private Image 外觀lv, 口感lv, 香氣lv, 經典lv;
     private Button 外觀Button, 口感Button, 香氣Button, 經典Button;
     private Animator IncreasePanelAni;
     private GameObject CloseDetect;
@@ -36,6 +48,7 @@ public class KitchenManager : MonoBehaviour {
     private Button IPPriceButton;
     private GameObject ChoiceContent;
     private RectTransform CCRT;
+    private Button CookingButton;
 
     private Type currentType;
 
@@ -48,59 +61,65 @@ public class KitchenManager : MonoBehaviour {
     private Image RabbitImage;
     private bool success = false;
 
+    private GameObject PageTransitionCanvas;
+
     // Start is called before the first frame update
     void Start() {
-        外觀Button = transform.GetChild(0).GetChild(0).GetComponent<Button>();
-        外觀lv = 外觀Button.transform.GetChild(1).GetComponent<Text>();
-        口感Button = transform.GetChild(0).GetChild(1).GetComponent<Button>();
-        口感lv = 口感Button.transform.GetChild(1).GetComponent<Text>();
-        香氣Button = transform.GetChild(0).GetChild(2).GetComponent<Button>();
-        香氣lv = 香氣Button.transform.GetChild(1).GetComponent<Text>();
-        經典Button = transform.GetChild(0).GetChild(3).GetComponent<Button>();
-        經典lv = 經典Button.transform.GetChild(1).GetComponent<Text>();
+        外觀Button = transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Button>();
+        外觀lv = 外觀Button.GetComponent<Image>();
+        口感Button = transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<Button>();
+        口感lv = 口感Button.GetComponent<Image>();
+        香氣Button = transform.GetChild(0).GetChild(0).GetChild(2).GetComponent<Button>();
+        香氣lv = 香氣Button.GetComponent<Image>();
+        經典Button = transform.GetChild(0).GetChild(0).GetChild(3).GetComponent<Button>();
+        經典lv = 經典Button.GetComponent<Image>();
 
-        外觀lv.text = "Lv." + SystemVariables.waiguanValue.ToString();
-        口感lv.text = "Lv." + SystemVariables.koganValue.ToString();
-        香氣lv.text = "Lv." + SystemVariables.xianchiValue.ToString();
-        經典lv.text = "Lv." + SystemVariables.classicValue.ToString();
+        外觀lv.sprite = 外觀Sprites[SystemVariables.waiguanValue - 1].NotPress;
+        ChangePressedSprite(ref 外觀Button, 外觀Sprites[SystemVariables.waiguanValue - 1].Pressed);
+        口感lv.sprite = 口感Sprites[SystemVariables.koganValue - 1].NotPress;
+        ChangePressedSprite(ref 口感Button, 口感Sprites[SystemVariables.koganValue - 1].Pressed);
+        香氣lv.sprite = 香氣Sprites[SystemVariables.xianchiValue - 1].NotPress;
+        ChangePressedSprite(ref 香氣Button, 香氣Sprites[SystemVariables.xianchiValue - 1].Pressed);
+        經典lv.sprite = 經典Sprites[SystemVariables.classicValue - 1].NotPress;
+        ChangePressedSprite(ref 經典Button, 經典Sprites[SystemVariables.classicValue - 1].Pressed);
 
-        IncreasePanelAni = transform.GetChild(0).GetChild(7).GetComponent<Animator>();
+        IncreasePanelAni = transform.GetChild(0).GetChild(4).GetComponent<Animator>();
         IPType = IncreasePanelAni.transform.GetChild(0).GetComponent<Text>();
         IPCurrentLevel = IncreasePanelAni.transform.GetChild(2).GetChild(1).GetComponent<Text>();
         IPNextLevel = IncreasePanelAni.transform.GetChild(2).GetChild(2).GetComponent<Text>();
         IPPrice = IncreasePanelAni.transform.GetChild(3).GetChild(1).GetComponent<Text>();
         IPPriceButton = IncreasePanelAni.transform.GetChild(3).GetComponent<Button>();
 
-        CloseDetect = transform.GetChild(0).GetChild(6).gameObject;
+        CloseDetect = transform.GetChild(0).GetChild(3).gameObject;
         CloseDetect.SetActive(false);
         CheckTypeButton();
 
-        ChoiceContent = transform.GetChild(0).GetChild(5).GetChild(0).gameObject;
+        ChoiceContent = transform.GetChild(0).GetChild(2).GetChild(0).GetChild(0).gameObject;
 
         foreach(OneRabbit r in RabbitSystem.data.rabbitsList) {
             RabbitChoice rc;
             GameObject g = Instantiate(食譜Prefab, ChoiceContent.transform);
-            g.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate() { SelectRecipe(g); });
+            g.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate() { SelectRecipe(g); });
             if(r.got) {
-                g.transform.GetChild(1).gameObject.SetActive(false);
-                g.transform.GetChild(0).gameObject.SetActive(true);
-                g.transform.GetChild(0).GetComponent<Image>().sprite = r.image;
+                g.transform.GetChild(2).gameObject.SetActive(false);
+                g.transform.GetChild(1).gameObject.SetActive(true);
+                g.transform.GetChild(1).GetComponent<Image>().sprite = r.image;
                 rc.successRate = 100;
             }
             else {
                 rc.successRate = GetSuccessRate(r.demands);
                 if(rc.successRate != 0) {
-                    g.transform.GetChild(1).GetChild(1).GetComponent<Text>().text = rc.successRate.ToString();
-                    g.transform.GetChild(0).gameObject.SetActive(false);
-                    g.transform.GetChild(1).gameObject.SetActive(true);
+                    g.transform.GetChild(2).GetComponent<Image>().sprite = 成功率Sprites[GetIndexOfSuccessRateSprite(rc.successRate)];
+                    g.transform.GetChild(1).gameObject.SetActive(false);
+                    g.transform.GetChild(2).gameObject.SetActive(true);
                 }
                 else {
-                    g.transform.GetChild(0).gameObject.SetActive(true);
-                    g.transform.GetChild(1).gameObject.SetActive(false);
-                    g.transform.GetChild(0).GetComponent<Image>().sprite = QuestionMark;
+                    g.transform.GetChild(1).gameObject.SetActive(true);
+                    g.transform.GetChild(2).gameObject.SetActive(false);
+                    g.transform.GetChild(1).GetComponent<Image>().sprite = QuestionMark;
                 }
             }
-            g.transform.GetChild(2).gameObject.SetActive(false);
+            g.transform.GetChild(3).gameObject.SetActive(false);
             rc.instance = g;
             rc.name = r.name;
             rc.method = r.method;
@@ -109,7 +128,7 @@ public class KitchenManager : MonoBehaviour {
             rabbitChoices.Add(rc);
         }
         CCRT = ChoiceContent.GetComponent<RectTransform>();
-        CCRT.offsetMin = new Vector2(CCRT.offsetMin.x, ((170 * Mathf.Ceil(rabbitChoices.Count / 3.0f) + 27) - 270) * -1);
+        CCRT.offsetMin = new Vector2(CCRT.offsetMin.x, ((101 * Mathf.Ceil(rabbitChoices.Count / 3.0f) + 15) - 190) * -1);
 
         ResultPanel = transform.GetChild(1).gameObject;
         ResultPanel.SetActive(false);
@@ -117,6 +136,12 @@ public class KitchenManager : MonoBehaviour {
         Oven = transform.GetChild(1).GetChild(1).gameObject;
         RabbitName = transform.GetChild(1).GetChild(3).GetComponent<Text>();
         RabbitImage = transform.GetChild(1).GetChild(4).GetComponent<Image>();
+
+        CookingButton = transform.GetChild(0).GetChild(1).GetComponent<Button>();
+        CookingButton.interactable = false;
+
+        PageTransitionCanvas = FindObjectOfType<PageTransition>().gameObject;
+        PageTransitionCanvas.SetActive(true);
     }
 
     // Update is called once per frame
@@ -130,28 +155,32 @@ public class KitchenManager : MonoBehaviour {
 
     private void IncreaseWaiguan() {
         SystemVariables.waiguanValue++;
-        外觀lv.text = "Lv." + SystemVariables.waiguanValue.ToString();
+        外觀lv.sprite = 外觀Sprites[SystemVariables.waiguanValue - 1].NotPress;
+        ChangePressedSprite(ref 外觀Button, 外觀Sprites[SystemVariables.waiguanValue - 1].Pressed);
         CheckTypeButton();
         CheckChoices();
     }
 
     private void IncreaseKogan() {
         SystemVariables.koganValue++;
-        口感lv.text = "Lv." + SystemVariables.koganValue.ToString();
+        口感lv.sprite = 口感Sprites[SystemVariables.koganValue - 1].NotPress;
+        ChangePressedSprite(ref 口感Button, 口感Sprites[SystemVariables.koganValue - 1].Pressed);
         CheckTypeButton();
         CheckChoices();
     }
 
     private void IncreaseXianchi() {
         SystemVariables.xianchiValue++;
-        香氣lv.text = "Lv." + SystemVariables.xianchiValue.ToString();
+        香氣lv.sprite = 香氣Sprites[SystemVariables.xianchiValue - 1].NotPress;
+        ChangePressedSprite(ref 香氣Button, 香氣Sprites[SystemVariables.xianchiValue - 1].Pressed);
         CheckTypeButton();
         CheckChoices();
     }
 
     private void IncreaseClassic() {
         SystemVariables.classicValue++;
-        經典lv.text = "Lv." + SystemVariables.classicValue.ToString();
+        經典lv.sprite = 經典Sprites[SystemVariables.classicValue - 1].NotPress;
+        ChangePressedSprite(ref 經典Button, 經典Sprites[SystemVariables.classicValue - 1].Pressed);
         CheckTypeButton();
         CheckChoices();
     }
@@ -306,9 +335,9 @@ public class KitchenManager : MonoBehaviour {
                 RabbitChoice tempRC = rabbitChoices[i];
                 tempRC.successRate = GetSuccessRate(RabbitSystem.GetDemands(rabbitChoices[i].name));
                 if(tempRC.successRate != 0) {
-                    tempRC.instance.transform.GetChild(0).gameObject.SetActive(false);
-                    tempRC.instance.transform.GetChild(1).gameObject.SetActive(true);
-                    tempRC.instance.transform.GetChild(1).GetChild(1).GetComponent<Text>().text = tempRC.successRate.ToString();
+                    tempRC.instance.transform.GetChild(1).gameObject.SetActive(false);
+                    tempRC.instance.transform.GetChild(2).gameObject.SetActive(true);
+                    tempRC.instance.transform.GetChild(2).GetComponent<Image>().sprite = 成功率Sprites[GetIndexOfSuccessRateSprite(tempRC.successRate)];
                 }
                 
                 rabbitChoices[i] = tempRC;
@@ -317,12 +346,13 @@ public class KitchenManager : MonoBehaviour {
     }
 
     public void SelectRecipe(GameObject g) {
-        rabbitChoices[chosenRabbitIndex].instance.transform.GetChild(2).gameObject.SetActive(false);
+        rabbitChoices[chosenRabbitIndex].instance.transform.GetChild(3).gameObject.SetActive(false);
         int count = 0;
         foreach(RabbitChoice rc in rabbitChoices) {
             if(rc.instance == g) {
-                g.transform.GetChild(2).gameObject.SetActive(true);
+                g.transform.GetChild(3).gameObject.SetActive(true);
                 chosenRabbitIndex = count;
+                CookingButton.interactable = true;
                 return;
             }
             count++;
@@ -351,41 +381,61 @@ public class KitchenManager : MonoBehaviour {
             }
         }
         ResultPanel.SetActive(true);
+        PageTransitionCanvas.SetActive(false);
     }
 
     private void CookingSuccess() {
-        if(rabbitChoices[chosenRabbitIndex].method == Method.Refrigerator) {
+        /*if(rabbitChoices[chosenRabbitIndex].method == Method.Refrigerator) {
             Refrigerator.SetActive(true);
             Oven.SetActive(false);
         }
         else {
             Oven.SetActive(true);
             Refrigerator.SetActive(false);
-        }
+        }*/
         RabbitName.text = rabbitChoices[chosenRabbitIndex].name;
         RabbitImage.sprite = rabbitChoices[chosenRabbitIndex].image;
         success = true;
     } 
 
     private void CookingFailed() {
-        Refrigerator.SetActive(false);
-        Oven.SetActive(false);
-        RabbitName.text = "烤焦啦~~~";
-        RabbitImage.sprite = 焦;
+        //Refrigerator.SetActive(false);
+        //Oven.SetActive(false);
+        if(rabbitChoices[chosenRabbitIndex].method == Method.Refrigerator) {
+            RabbitImage.sprite = 凍;
+        }
+        else {
+            RabbitImage.sprite = 焦;
+        }
+        RabbitName.text = "失敗啦QQ";
         success = false;
     }
 
     public void ResultConfirm() {
         ResultPanel.SetActive(false);
-        rabbitChoices[chosenRabbitIndex].instance.transform.GetChild(2).gameObject.SetActive(false);
-        if(success) {
+        rabbitChoices[chosenRabbitIndex].instance.transform.GetChild(3).gameObject.SetActive(false);
+        CookingButton.interactable = false;
+        if (success) {
             RabbitSystem.SetRabbitGotOrNot(rabbitChoices[chosenRabbitIndex].name, true);
             RabbitChoice rc = rabbitChoices[chosenRabbitIndex];
             rc.successRate = 100;
-            rc.instance.transform.GetChild(0).gameObject.SetActive(true);
-            rc.instance.transform.GetChild(1).gameObject.SetActive(false);
-            rc.instance.transform.GetChild(0).GetComponent<Image>().sprite = rc.image;
+            rc.instance.transform.GetChild(1).gameObject.SetActive(true);
+            rc.instance.transform.GetChild(2).gameObject.SetActive(false);
+            rc.instance.transform.GetChild(1).GetComponent<Image>().sprite = rc.image;
             rabbitChoices[chosenRabbitIndex] = rc;
         }
+        PageTransitionCanvas.SetActive(true);
+    }
+
+    private int GetIndexOfSuccessRateSprite(int successRate) {
+        if (successRate == 25) return 0;
+        else if (successRate == 50) return 1;
+        else return 2;
+    }
+
+    private void ChangePressedSprite(ref Button bt, Sprite pressedSprite) {
+        SpriteState spriteState = bt.spriteState;
+        spriteState.pressedSprite = pressedSprite;
+        bt.spriteState = spriteState;
     }
 }

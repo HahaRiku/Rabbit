@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: RabbitsData
   m_EditorClassIdentifier: 
   rabbitsList:
-  - name: 1
-    method: 0
+  - name: "\u6CE1\u8299"
+    method: 1
     image: {fileID: 21300000, guid: 29846e77aa2d792458284ae18ab7d016, type: 3}
     demands:
     - percentage: 100
@@ -23,7 +23,7 @@ MonoBehaviour:
       "\u9999\u6C23Demand": 1
       "\u7D93\u5178Demand": 1
     got: 1
-  - name: 2
+  - name: "\u751C\u751C\u5708"
     method: 1
     image: {fileID: 21300000, guid: ad27e97f7fe1841458489ab5e0952930, type: 3}
     demands:
@@ -43,7 +43,7 @@ MonoBehaviour:
       "\u9999\u6C23Demand": 1
       "\u7D93\u5178Demand": 1
     got: 1
-  - name: 3
+  - name: "\u9CF3\u68A8\u9165"
     method: 1
     image: {fileID: 21300000, guid: 3f943cc1c5e5ab64084823a377de1d5d, type: 3}
     demands:
@@ -58,7 +58,7 @@ MonoBehaviour:
       "\u9999\u6C23Demand": 1
       "\u7D93\u5178Demand": 1
     got: 1
-  - name: 4
+  - name: "\u8349\u8393\u5927\u798F"
     method: 0
     image: {fileID: 21300000, guid: bf428a2b214baf94aa973df7fa1acb06, type: 3}
     demands:
@@ -78,3 +78,83 @@ MonoBehaviour:
       "\u9999\u6C23Demand": 1
       "\u7D93\u5178Demand": 1
     got: 1
+  - name: "\u5DE7\u514B\u529B\u5927\u798F"
+    method: 0
+    image: {fileID: 21300000, guid: b0143d0af66ac90409c1e4daef0ce10b, type: 3}
+    demands:
+    - percentage: 100
+      "\u5916\u89C0Demand": 2
+      "\u53E3\u611FDemand": 1
+      "\u9999\u6C23Demand": 1
+      "\u7D93\u5178Demand": 2
+    - percentage: 50
+      "\u5916\u89C0Demand": 2
+      "\u53E3\u611FDemand": 1
+      "\u9999\u6C23Demand": 1
+      "\u7D93\u5178Demand": 1
+    - percentage: 25
+      "\u5916\u89C0Demand": 2
+      "\u53E3\u611FDemand": 1
+      "\u9999\u6C23Demand": 1
+      "\u7D93\u5178Demand": 1
+    got: 0
+  - name: "\u4E09\u8272\u4E38\u5B50"
+    method: 0
+    image: {fileID: 21300000, guid: 4da9045cb7f8d4f4aab044d6506f8323, type: 3}
+    demands:
+    - percentage: 100
+      "\u5916\u89C0Demand": 2
+      "\u53E3\u611FDemand": 1
+      "\u9999\u6C23Demand": 2
+      "\u7D93\u5178Demand": 2
+    - percentage: 50
+      "\u5916\u89C0Demand": 1
+      "\u53E3\u611FDemand": 1
+      "\u9999\u6C23Demand": 2
+      "\u7D93\u5178Demand": 2
+    - percentage: 25
+      "\u5916\u89C0Demand": 1
+      "\u53E3\u611FDemand": 1
+      "\u9999\u6C23Demand": 1
+      "\u7D93\u5178Demand": 2
+    got: 0
+  - name: "\u9B06\u9905"
+    method: 1
+    image: {fileID: 21300000, guid: c1aecd73c7dd96448a6a0b6dffd0dae4, type: 3}
+    demands:
+    - percentage: 100
+      "\u5916\u89C0Demand": 1
+      "\u53E3\u611FDemand": 2
+      "\u9999\u6C23Demand": 2
+      "\u7D93\u5178Demand": 2
+    - percentage: 50
+      "\u5916\u89C0Demand": 1
+      "\u53E3\u611FDemand": 2
+      "\u9999\u6C23Demand": 2
+      "\u7D93\u5178Demand": 1
+    - percentage: 25
+      "\u5916\u89C0Demand": 1
+      "\u53E3\u611FDemand": 1
+      "\u9999\u6C23Demand": 2
+      "\u7D93\u5178Demand": 1
+    got: 0
+  - name: "\u68C9\u82B1\u7CD6\u6155\u65AF"
+    method: 0
+    image: {fileID: 21300000, guid: 0521b23bd1dd00e4c93535137ef7c796, type: 3}
+    demands:
+    - percentage: 100
+      "\u5916\u89C0Demand": 2
+      "\u53E3\u611FDemand": 2
+      "\u9999\u6C23Demand": 2
+      "\u7D93\u5178Demand": 2
+    - percentage: 50
+      "\u5916\u89C0Demand": 1
+      "\u53E3\u611FDemand": 2
+      "\u9999\u6C23Demand": 2
+      "\u7D93\u5178Demand": 2
+    - percentage: 25
+      "\u5916\u89C0Demand": 1
+      "\u53E3\u611FDemand": 2
+      "\u9999\u6C23Demand": 2
+      "\u7D93\u5178Demand": 1
+    got: 0
