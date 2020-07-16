@@ -12,7 +12,7 @@ public class SpriteEvent : MonoBehaviour
     private bool isClick = false;
     private bool startdrag = false;
     private bool dropping;
-    private bool walkdone = true;
+    private bool walkdone = true;///
     private float curT;
     private float maxX = 0.694f;
     private float minX = -1.767f;
@@ -94,7 +94,7 @@ public class SpriteEvent : MonoBehaviour
                 }
                 //r.useGravity = false;
             }
-            walkdone = true;
+            walkdone = true;///
         //}
         
     }
