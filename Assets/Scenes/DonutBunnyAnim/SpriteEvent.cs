@@ -9,10 +9,16 @@ public class SpriteEvent : MonoBehaviour
     private float startPosY;
     private float holdTime;
     private bool isBeingHeld;
-    private bool isClick = true;
+    private bool isClick = false;
     private bool startdrag = false;
     private bool dropping;
+    private bool walkdone = true;
     private float curT;
+    private float maxX = 0.694f;
+    private float minX = -1.767f;
+    private float maxY = 3.163f;
+    private float minY = -1.2f;
+    Sequence walkSequence;
 
     //Random random = new Random();
     private Animator ani;
@@ -36,18 +42,22 @@ public class SpriteEvent : MonoBehaviour
                 mousePos = Input.mousePosition;
                 mousePos = Camera.main.ScreenToWorldPoint(mousePos);
 
-                if(startdrag == false) {
+                if (startdrag == false) {
                     startdrag = true;
                     ani.SetTrigger("Drag");
                     Debug.Log("Drag");
+                    walkSequence.Kill();
                 }
-
+                
                 transform.parent.localPosition = new Vector3(mousePos.x - startPosX, mousePos.y - startPosY, 0);
             }
         }
-        //if (dropping == true && transform.parent.localPosition.y <= 0.02) {
-        //    r.gravityScale = 0;
-        //}
+        if(dropping == false && isClick == false && isBeingHeld == false && walkdone == true) {
+            walkdone = false;//still walking
+            Vector3 nextpos = new Vector3(Random.Range(minX, maxX), Random.Range(minY, maxY));
+            walkSequence = DOTween.Sequence();
+            walkSequence.Append(transform.parent.DOMove(nextpos, 6).OnComplete(() => { walkdone = true; }));
+        }
     }
 
     private void OnMouseDown() {
@@ -66,25 +76,37 @@ public class SpriteEvent : MonoBehaviour
     }
 
     void OnMouseUp() {
-        isBeingHeld = false;
-        startdrag = false;
-        if (isClick == true) {
-            ani.SetTrigger("Click");
-            Debug.Log("Click");
-        }
-        else {
-            ani.GetComponent<Animator>().enabled = true;
-            ani.SetTrigger("Drop");
-            Debug.Log("Drop");
-            
-            if(transform.parent.localPosition.y > 0.349) {
-                //r.gravityScale = 1;
-                dropping = true;
-                transform.parent.DOMoveY(-0.111f, 0.78f).SetEase(Ease.InCubic);
+        //if (isBeingHeld) {
+            isBeingHeld = false;
+            startdrag = false;
+            if (isClick == true) {
+                ani.SetTrigger("Click");
+                Debug.Log("Click");
             }
-            //r.useGravity = false;
-        }
-    }
+            else {
+                ani.GetComponent<Animator>().enabled = true;
+                Debug.Log("Drop");
 
-    
+                if (transform.parent.localPosition.y > 0.349) {
+                    //r.gravityScale = 1;
+                    dropping = true;
+                    transform.parent.DOMoveY(-0.111f, 0.78f).SetEase(Ease.InCubic).OnComplete(() => { dropping = false; });
+                }
+                //r.useGravity = false;
+            }
+            walkdone = true;
+        //}
+        
+    }
+    /*
+    private void OnMouseExit() {
+        isBeingHeld = false;
+    }
+    */
+    IEnumerator RestTime() {
+        walkdone = false;
+        yield return new WaitForSeconds(Random.Range(0, 6));
+        walkdone = true;
+
+    }
 }
