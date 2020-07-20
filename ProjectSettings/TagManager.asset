@@ -44,3 +44,6 @@ TagManager:
   - name: DonutBunny
     uniqueID: 2126473993
     locked: 0
+  - name: PuffBunny
+    uniqueID: 1479979173
+    locked: 0
