@@ -11,6 +11,8 @@ public class SudokuGM : MonoBehaviour {
     public Sprite 正確;
     public Sprite 失敗;
     public Sprite Transparent;
+    public Sprite QuestionPanel;
+    public Sprite SelectedPanel;
 
     private GameObject[,] grids = new GameObject[9, 9];
     private Image[,] images = new Image[9, 9];
@@ -146,7 +148,12 @@ public class SudokuGM : MonoBehaviour {
     }
 
     public void ClickConfirm() {
-        for(int i = 0; i < 9; i++) {
+        if (chosenGridPosRow != -1) {
+            grids[chosenGridPosRow, chosenGridPosCol].transform.parent.GetChild(0).gameObject.SetActive(false);
+        }
+        chosenGridPosRow = -1;
+        chosenGridPosCol = -1;
+        for (int i = 0; i < 9; i++) {
             for(int j = 0; j < 9; j++) {
                 if(recordedNumbers[i, j] != SudokuDataManagement.GetNumber(difficulty, sudokuIndex, i, j)) {
                     EndImage.sprite = 失敗;
@@ -164,6 +171,9 @@ public class SudokuGM : MonoBehaviour {
         for(int i = 0; i < 9; i++) {
             for(int j = 0; j < 9; j++) {
                 images[i, j].sprite = Transparent;
+                GameObject tempG = images[i, j].transform.parent.GetChild(0).gameObject;
+                tempG.SetActive(false);
+                tempG.GetComponent<Image>().sprite = SelectedPanel;
             }
         }
         recordedNumbers = new int[9, 9];
@@ -187,6 +197,11 @@ public class SudokuGM : MonoBehaviour {
                 int number = SudokuDataManagement.GetNumber(difficulty, sudokuIndex, i, j);
                 if (SudokuDataManagement.GetExistedInQues(difficulty, sudokuIndex, i, j)) {
                     images[i, j].sprite = 一到九圖案[number - 1];
+                    GameObject tempG = images[i, j].transform.parent.GetChild(0).gameObject;
+                    tempG.SetActive(true);
+                    tempG.GetComponent<Image>().sprite = QuestionPanel;
+                    //Debug.Log(tempG.active);
+
                     recordedNumbers[i, j] = number;
                 }
                 else {

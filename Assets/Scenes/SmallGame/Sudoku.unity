@@ -11086,6 +11086,8 @@ MonoBehaviour:
   "\u6B63\u78BA": {fileID: 21300000, guid: 534492cbe3d6f4b4a883e08bc3c4f60a, type: 3}
   "\u5931\u6557": {fileID: 21300000, guid: cac533e59a50aa142b64cb895d33446f, type: 3}
   Transparent: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  QuestionPanel: {fileID: 21300000, guid: 10cba22291b1eaa4ba7f43e792cc8cfc, type: 3}
+  SelectedPanel: {fileID: 21300000, guid: acbaef9c3db04894195c72029b494166, type: 3}
 --- !u!4 &814132399
 Transform:
   m_ObjectHideFlags: 0
