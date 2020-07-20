@@ -35,9 +35,9 @@ public class FieldButtonPressDetection : MonoBehaviour, IPointerDownHandler, IPo
     }
 
     public void OnPointerUp(PointerEventData eventData) {
-        if(SystemVariables.plantStatus == PlantStatus.種植中) {
+        down = false;
+        if(SystemVariables.plantStatus == PlantStatus.種植中 && open) {
             open = false;
-            down = false;
             hintAni.SetTrigger("CloseHint");
         }
     }
