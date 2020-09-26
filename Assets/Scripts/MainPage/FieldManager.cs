@@ -28,6 +28,7 @@ public class FieldManager : MonoBehaviour {
     private Animator HarvestAni;
     private GameObject CloseDetect_Harvest;
     private Button FieldButton;
+    private Canvas FieldCanvas;
 
     // Start is called before the first frame update
     void Start() {
@@ -47,6 +48,7 @@ public class FieldManager : MonoBehaviour {
         HarvestAni = BigCarrot.parent.parent.GetComponent<Animator>();
         CloseDetect_Harvest = transform.GetChild(4).gameObject;
         FieldButton = transform.GetChild(0).GetComponent<Button>();
+        FieldCanvas = GetComponent<Canvas>();
         CheckPlantTime();
     }
 
@@ -133,6 +135,7 @@ public class FieldManager : MonoBehaviour {
         SystemVariables.plantStatus = PlantStatus.田園;
         HarvestAni.SetTrigger("CloseHarvest");
         CloseDetect_Harvest.SetActive(false);
+        FieldCanvas.sortingOrder = 0;
         CheckPlantTime();
     }
 

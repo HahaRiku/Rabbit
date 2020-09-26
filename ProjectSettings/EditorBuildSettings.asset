@@ -5,19 +5,22 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Title.unity
     guid: 7c73bd3aaba003c41b4236c7d205fbae
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Kitchen.unity
     guid: 91e7ac030fe0e9742b36fa1a6a6f88fb
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainPage.unity
     guid: 0efa33ab8b26b304cafcdfd964cddebc
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SmallGame/Sudoku.unity
     guid: bc45f4872df600b42bc5684e364897a0
+  - enabled: 1
+    path: Assets/Scenes/TestScene/TestWebCamera.unity
+    guid: a478d4a6325dd2640b24138405c2c25d
   m_configObjects: {}
