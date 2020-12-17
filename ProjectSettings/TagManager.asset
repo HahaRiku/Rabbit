@@ -41,12 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: MacaroonBunny
+    uniqueID: 3099648981
+    locked: 0
   - name: DonutBunny
     uniqueID: 2126473993
     locked: 0
   - name: PuffBunny
     uniqueID: 1479979173
-    locked: 0
-  - name: MacaroonBunny
-    uniqueID: 3099648981
     locked: 0
