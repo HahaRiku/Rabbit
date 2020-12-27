@@ -83,8 +83,7 @@ public class SudokuGM : MonoBehaviour {
         DifficultyCanvas.SetActive(true);
         GameCanvas.SetActive(false);
         EndPanel = GameCanvas.transform.GetChild(1).gameObject;
-        EndImage = EndPanel.transform.GetChild(1).GetComponent<Image>();
-        ClearAllGrids();
+        EndImage = EndPanel.transform.GetChild(1).GetComponent<Image>();    
         Initialization();
     }
 
@@ -200,8 +199,6 @@ public class SudokuGM : MonoBehaviour {
                     GameObject tempG = images[i, j].transform.parent.GetChild(0).gameObject;
                     tempG.SetActive(true);
                     tempG.GetComponent<Image>().sprite = QuestionPanel;
-                    //Debug.Log(tempG.active);
-
                     recordedNumbers[i, j] = number;
                 }
                 else {

@@ -9,7 +9,6 @@ public class ClickGrid : MonoBehaviour {
     void Start() {
         GM = FindObjectOfType<SudokuGM>();
         Kuang = transform.parent.GetChild(0).gameObject;
-        Kuang.SetActive(false);
     }
 
     // Update is called once per frame
