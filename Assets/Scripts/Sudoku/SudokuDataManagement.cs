@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public static class SudokuDataManagement {
@@ -75,6 +76,7 @@ public static class SudokuDataManagement {
             }
             temp[data_easy.sudokus.Length] = sudoku;
             data_easy.sudokus = temp;
+            EditorUtility.SetDirty(data_easy);
         }
         else {
             Sudoku[] temp = new Sudoku[data_normal.sudokus.Length + 1];
@@ -83,6 +85,7 @@ public static class SudokuDataManagement {
             }
             temp[data_normal.sudokus.Length] = sudoku;
             data_normal.sudokus = temp;
+            EditorUtility.SetDirty(data_normal);
         }
     }
 
