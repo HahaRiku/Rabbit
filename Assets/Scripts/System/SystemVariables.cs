@@ -28,7 +28,8 @@ public static class Init {
         SystemVariables.koganValue = 1;
         SystemVariables.xianchiValue = 1;
         SystemVariables.classicValue = 1;
-        RabbitSystem.Reset();
+        //RabbitSystem.Reset();
+        RabbitSystem.CalculateRabbitLoveCount();
     }
 }
 

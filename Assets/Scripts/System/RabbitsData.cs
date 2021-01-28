@@ -14,6 +14,9 @@ public class OneRabbit {
     public Sprite image;
     public Demand[] demands;
     public bool got;
+    public bool love;
+    [TextArea]
+    public string description;
 }
 
 [System.Serializable]

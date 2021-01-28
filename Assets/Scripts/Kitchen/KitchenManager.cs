@@ -96,18 +96,18 @@ public class KitchenManager : MonoBehaviour {
 
         ChoiceContent = transform.GetChild(0).GetChild(2).GetChild(0).GetChild(0).gameObject;
 
-        foreach(OneRabbit r in RabbitSystem.data.rabbitsList) {
+        for(int i = 0; i < RabbitSystem.GetRabbitListCount(); i++) {
             RabbitChoice rc;
             GameObject g = Instantiate(食譜Prefab, ChoiceContent.transform);
             g.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(delegate() { SelectRecipe(g); });
-            if(r.got) {
+            if(RabbitSystem.GetRabbitGotById(i)) {
                 g.transform.GetChild(2).gameObject.SetActive(false);
                 g.transform.GetChild(1).gameObject.SetActive(true);
-                g.transform.GetChild(1).GetComponent<Image>().sprite = r.image;
+                g.transform.GetChild(1).GetComponent<Image>().sprite = RabbitSystem.GetRabbitSpriteById(i);
                 rc.successRate = 100;
             }
             else {
-                rc.successRate = GetSuccessRate(r.demands);
+                rc.successRate = GetSuccessRate(RabbitSystem.GetDemandsById(i));
                 if(rc.successRate != 0) {
                     g.transform.GetChild(2).GetComponent<Image>().sprite = 成功率Sprites[GetIndexOfSuccessRateSprite(rc.successRate)];
                     g.transform.GetChild(1).gameObject.SetActive(false);
@@ -121,10 +121,10 @@ public class KitchenManager : MonoBehaviour {
             }
             g.transform.GetChild(3).gameObject.SetActive(false);
             rc.instance = g;
-            rc.name = r.name;
-            rc.method = r.method;
-            rc.image = r.image;
-            rc.got = r.got;
+            rc.name = RabbitSystem.GetRabbitNameById(i);
+            rc.method = RabbitSystem.GetRabbitMethodById(i);
+            rc.image = RabbitSystem.GetRabbitSpriteById(i);
+            rc.got = RabbitSystem.GetRabbitGotById(i);
             rabbitChoices.Add(rc);
         }
         CCRT = ChoiceContent.GetComponent<RectTransform>();

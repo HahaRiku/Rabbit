@@ -60,13 +60,13 @@ public class FieldManager : MonoBehaviour {
     }
 
     public void LeftChangeHouseKeeper() {
-        chosenIndex = (chosenIndex == 0) ? HouseKeeperSystem.data.houseKeeperList.Count - 1 : chosenIndex - 1;
+        chosenIndex = (chosenIndex == 0) ? HouseKeeperSystem.GetKeeperCount() - 1 : chosenIndex - 1;
         ChangeHouseKeeperRoutine();
 
     }
 
     public void RightChangeHouseKeeper() {
-        chosenIndex = (chosenIndex == HouseKeeperSystem.data.houseKeeperList.Count - 1) ? 0 : chosenIndex + 1;
+        chosenIndex = (chosenIndex == HouseKeeperSystem.GetKeeperCount() - 1) ? 0 : chosenIndex + 1;
         ChangeHouseKeeperRoutine();
     }
 

@@ -20,6 +20,8 @@ MonoBehaviour:
       skill: 0
       percentage: -10
     Hint: {fileID: 21300000, guid: 2e404af9c35fded4a89af0181b799951, type: 3}
+    skillStr: "\u53EF\u611B\u5230\u589E\u52A0\u863F\u8514"
+    description: "\u4F60\u6709\u9B54\u6CD5\u3107"
   - name: "\u6211\u4E0D\u77E5\u9053"
     sprite: {fileID: 21300000, guid: 4045984c2bf3a144aaa66eb6bbab6485, type: 3}
     got: 0
@@ -27,6 +29,8 @@ MonoBehaviour:
       skill: 1
       percentage: 10
     Hint: {fileID: 21300000, guid: 29fe37ea908ac28469c62648b2b425f4, type: 3}
+    skillStr: "\u6211\u4E0D\u77E5\u9053\u6280\u80FD\u662F\u5565"
+    description: "\u6211\u662F\u771F\u7684\u4E0D\u77E5\u9053\u5566\u5566\u5566\u5566\u5566\u5566\u5566\u5566\u5566"
   - name: Leg
     sprite: {fileID: 21300000, guid: ec3247a1c4adfdc48b6c62261375dfae, type: 3}
     got: 1
@@ -34,3 +38,5 @@ MonoBehaviour:
       skill: 1
       percentage: 30
     Hint: {fileID: 21300000, guid: 9775e05d589dfe449bfddcfcbc1e86a3, type: 3}
+    skillStr: "\u817F\u6E1B\u5C11\u6642\u9593??"
+    description: "\u6211\u662F\u771F\u7684\u4E0D\u77E5\u9053\u5566\u5566\u5566\u5566\u5566\u5566\u5566\u5566\u5566"

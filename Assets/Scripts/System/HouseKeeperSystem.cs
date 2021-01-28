@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public static class HouseKeeperSystem {
-    public static HouseKeepersData data = Resources.Load<HouseKeepersData>("HouseKeepersData");
+    private static HouseKeepersData data = Resources.Load<HouseKeepersData>("HouseKeepersData");
 
     public static Sprite GetSpriteByIndex(int index) {
         return data.houseKeeperList[index].sprite;
@@ -43,5 +43,17 @@ public static class HouseKeeperSystem {
 
     public static Sprite GetHintByIndex(int index) {
         return data.houseKeeperList[index].Hint;
+    }
+
+    public static string GetSkillStrByIndex(int index) {
+        return data.houseKeeperList[index].skillStr;
+    }
+
+    public static string GetDescByIndex(int index) {
+        return data.houseKeeperList[index].description;
+    }
+
+    public static int GetKeeperCount() {
+        return data.houseKeeperList.Count;
     }
 }

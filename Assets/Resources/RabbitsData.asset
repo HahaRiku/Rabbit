@@ -22,7 +22,9 @@ MonoBehaviour:
       "\u53E3\u611FDemand": 1
       "\u9999\u6C23Demand": 1
       "\u7D93\u5178Demand": 1
-    got: 1
+    got: 0
+    love: 0
+    description: "\u5C31\u662F\u4E00\u9846\u6CE1\u8299\u3002"
   - name: "\u751C\u751C\u5708"
     method: 1
     image: {fileID: 21300000, guid: ad27e97f7fe1841458489ab5e0952930, type: 3}
@@ -43,6 +45,8 @@ MonoBehaviour:
       "\u9999\u6C23Demand": 1
       "\u7D93\u5178Demand": 1
     got: 1
+    love: 0
+    description: "\u6211\u6BD4\u8F03\u559C\u6B61\u6492\u4E0A\u7CD6\u971C\u7684\u751C\u751C\u5708\u3002"
   - name: "\u9CF3\u68A8\u9165"
     method: 1
     image: {fileID: 21300000, guid: 3f943cc1c5e5ab64084823a377de1d5d, type: 3}
@@ -57,7 +61,9 @@ MonoBehaviour:
       "\u53E3\u611FDemand": 1
       "\u9999\u6C23Demand": 1
       "\u7D93\u5178Demand": 1
-    got: 1
+    got: 0
+    love: 0
+    description: "\u51AC\u74DC\u9165\u548C\u771F\u9CF3\u68A8\u9165\uFF0C\u90FD\u5E7E\uFF1F"
   - name: "\u8349\u8393\u5927\u798F"
     method: 0
     image: {fileID: 21300000, guid: bf428a2b214baf94aa973df7fa1acb06, type: 3}
@@ -77,7 +83,9 @@ MonoBehaviour:
       "\u53E3\u611FDemand": 1
       "\u9999\u6C23Demand": 1
       "\u7D93\u5178Demand": 1
-    got: 1
+    got: 0
+    love: 0
+    description: "\u8349\u8393\u597D\u3118\u3002"
   - name: "\u5DE7\u514B\u529B\u5927\u798F"
     method: 0
     image: {fileID: 21300000, guid: b0143d0af66ac90409c1e4daef0ce10b, type: 3}
@@ -97,7 +105,9 @@ MonoBehaviour:
       "\u53E3\u611FDemand": 1
       "\u9999\u6C23Demand": 1
       "\u7D93\u5178Demand": 1
-    got: 0
+    got: 1
+    love: 0
+    description: "\u80A5\u3002"
   - name: "\u4E09\u8272\u4E38\u5B50"
     method: 0
     image: {fileID: 21300000, guid: 4da9045cb7f8d4f4aab044d6506f8323, type: 3}
@@ -118,6 +128,8 @@ MonoBehaviour:
       "\u9999\u6C23Demand": 1
       "\u7D93\u5178Demand": 2
     got: 0
+    love: 0
+    description: "\u6C92\u5403\u904E\u597D\u597D\u5947\u3002"
   - name: "\u9B06\u9905"
     method: 1
     image: {fileID: 21300000, guid: c1aecd73c7dd96448a6a0b6dffd0dae4, type: 3}
@@ -138,6 +150,8 @@ MonoBehaviour:
       "\u9999\u6C23Demand": 2
       "\u7D93\u5178Demand": 1
     got: 0
+    love: 0
+    description: "\u61F7\u5FF5\u5C0F\u6728\u5C4B\u3109\u9B06\u9905\u3002"
   - name: "\u68C9\u82B1\u7CD6\u6155\u65AF"
     method: 0
     image: {fileID: 21300000, guid: 0521b23bd1dd00e4c93535137ef7c796, type: 3}
@@ -157,4 +171,6 @@ MonoBehaviour:
       "\u53E3\u611FDemand": 2
       "\u9999\u6C23Demand": 2
       "\u7D93\u5178Demand": 1
-    got: 0
+    got: 1
+    love: 0
+    description: "\u80A5\u7206\u3002"

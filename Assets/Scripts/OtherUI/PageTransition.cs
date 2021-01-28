@@ -18,6 +18,8 @@ public class PageTransition : MonoBehaviour {
     }
 
     public void To圖鑑() {
-
+        if(SceneManager.GetActiveScene().name != "Collections") {
+            SceneManager.LoadScene("Collections");
+        }
     }
 }

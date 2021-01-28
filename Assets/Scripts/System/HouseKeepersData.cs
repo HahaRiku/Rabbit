@@ -14,6 +14,8 @@ public class OneHouseKeeper {
     public bool got;
     public HouseKeeperSkill skill;
     public Sprite Hint;
+    public string skillStr;
+    public string description;
 }
 
 public enum HouseKeeperSkillType {

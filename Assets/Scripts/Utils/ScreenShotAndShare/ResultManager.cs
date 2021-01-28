@@ -47,6 +47,7 @@ public class ResultManager : MonoBehaviour {
         string filePath = Path.Combine(Application.temporaryCachePath, "sharedImg.png");
         File.WriteAllBytes(filePath, currentTexture.EncodeToPNG());
         new NativeShare().AddFile(filePath)
+            .SetSubject("Subject goes here").SetText("Hello world!")
             .SetCallback((result, shareTarget) => Debug.Log("Share result: " + result + ", selected app: " + shareTarget))
             .Share();
     }
