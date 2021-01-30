@@ -6,6 +6,6 @@ using UnityEngine.SceneManagement;
 public class Title : MonoBehaviour {
     
     public void StartGame() {
-        SceneManager.LoadScene("MainPage");
+        SceneManager.ChangingScene("MainPage");
     }
 }

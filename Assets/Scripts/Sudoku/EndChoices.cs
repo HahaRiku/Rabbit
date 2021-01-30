@@ -6,10 +6,10 @@ using UnityEngine.SceneManagement;
 public class EndChoices : MonoBehaviour {
 
     public void OtherDifficulties() {
-        SceneManager.LoadScene("Sudoku");
+        SceneManager.ChangingScene("Sudoku");
     }
 
     public void Home() {
-        SceneManager.LoadScene("MainPage");
+        SceneManager.ChangingScene("MainPage");
     }
 }

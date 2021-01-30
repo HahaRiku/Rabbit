@@ -105,7 +105,7 @@ public class CollectionsManager : MonoBehaviour {
     }
 
     public void OnClickBackBtn() {
-
+        SceneManager.ChangingScene(SceneManager.LastScene);
     }
 }
 
