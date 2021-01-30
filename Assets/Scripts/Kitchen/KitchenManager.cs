@@ -128,7 +128,7 @@ public class KitchenManager : MonoBehaviour {
             rabbitChoices.Add(rc);
         }
         CCRT = ChoiceContent.GetComponent<RectTransform>();
-        CCRT.offsetMin = new Vector2(CCRT.offsetMin.x, ((101 * Mathf.Ceil(rabbitChoices.Count / 3.0f) + 15) - 190) * -1);
+        CCRT.offsetMin = new Vector2(CCRT.offsetMin.x, ((101 * Mathf.Ceil(rabbitChoices.Count / 3.0f) + 15) - 160) * -1);
 
         ResultPanel = transform.GetChild(1).gameObject;
         ResultPanel.SetActive(false);
